@@ -45,5 +45,5 @@ not affect the evaluation of the solution.
   the inner door is not shut. Yes, this is an old design in an old building.
 * It should also stop immediately if the inner door is opened during travel.
   In this app, though, "immediately" should mean "at the next one-second tick".
-* An onoccupied car can be called irregardless of its inner door status.
+* An unoccupied car can be called irregardless of its inner door status.
 * The car's `dir` property is supposed to be `-1`, `0` and `1`.
