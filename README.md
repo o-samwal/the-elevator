@@ -4,7 +4,7 @@ A programming test by Wopata.
 
 ## The job
 
-Your job is to write the controllic logic board of an elevator in Angular.JS.
+Your job is to write the controlling logic board of an elevator in Angular.JS.
 It is a completely standard elevator you surely have operated numerous times in
 your life, so the way it works should be instantly familiar.
 
