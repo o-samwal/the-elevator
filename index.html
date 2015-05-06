@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="elevator">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/elevator.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/elevator.js" charset="UTF-8"></script>
+  </head>
+  <body ng-controller="ElevatorCtrl">
+    <section>
+      <h2>Floor schematics</h2>
+      <table>
+        <tr ng-repeat="floor in floors">
+          <th scope="row" ng-class="car.active(floor.n) && 'active'">
+            <span ng-show="car.active(floor.n)" ng-bind="car.icon(floor.n)"></span>
+          </th>
+          <td>{{floor.title}}</th>
+          <td ng-class="floor.light">&#x25cf;</td>
+          <td>
+            <button type="button">Call</button>
+            <button type="button" ng-disabled="!car.canOpen(floor.n)">Open door</button>
+          </td>
+        <tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Controls in car</h2>
+      <ul>
+        <li ng-repeat="floor in floors">
+          <button type="button" ng-disabled="!car.occupied" ng-click="panel.press(floor.n)" ng-class="panel.btnClass(floor.n)">{{floor.title}}</button>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>User controls</h2>
+      <button type="button">Open car door</button>
+      <button type="button" ng-click="car.stepIn()">Step in</button>
+      <button type="button" ng-click="car.stepOut()">Step out</button>
+    </section>
+  </body>
+</html>
