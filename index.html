@@ -29,6 +29,9 @@
         <li ng-repeat="floor in floors">
           <button type="button" ng-disabled="!car.occupied" ng-click="panel.press(floor.n)" ng-class="panel.btnClass(floor.n)">{{floor.title}}</button>
         </li>
+        <li>
+          <button class="stop" type="button" ng-disabled="!car.occupied" ng-click="panel.stop()">STOP</button>
+        </li>
       </ul>
     </section>
 
