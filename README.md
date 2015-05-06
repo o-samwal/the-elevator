@@ -23,12 +23,13 @@ not affect the evaluation of the solution.
 * Some elevators can fulfill one request at a time, others collect requests and
   complete them in floor order. The algorithm choice is up to you, but the
   smarter the better!
-* Write all the logic that's called by the call button, and the buttons on the
+* Write all the logic that's called by the call button and the buttons on the
   panel of the car.
 * Write the logic that controls the light (red or green) at each floor. Red
   should mean that the car is occupied, green should mean that it's coming to
   this floor, and no light should mean that it's free to call. Just set
   `floors[n].light` to `""`, `"red"` or `green`.
+* Disable step in/out buttons when it's not possible to enter or leave the car.
 * Needless to say, write tests to test your code. And ours.
 * For extra coolness points, you can separate the control logic to an injected
   dependency, to allow for it to be "upgraded" from, say, a simple logic to one
