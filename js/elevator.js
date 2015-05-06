@@ -29,10 +29,13 @@ angular.module("elevator", []).
     // Object representing the control panel in the car
     $scope.panel = {
       btnClass: function (n) {
+        // This can be used to emulate a LED light near or inside the button
+        // to give feedback to the user.
         return null;
       },
       press: function (n) {
-        alert("Pressed "+n);
+      },
+      stop: function () {
       }
     }
 
