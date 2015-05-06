@@ -11,7 +11,7 @@
       <table>
         <tr ng-repeat="floor in floors">
           <th scope="row" ng-class="car.active(floor.n) && 'active'">
-            <span ng-show="car.active(floor.n)" ng-bind="car.icon(floor.n)"></span>
+            <span ng-show="car.active(floor.n)" ng-bind="car.state()"></span>
           </th>
           <td>{{floor.title}}</th>
           <td ng-class="floor.light">&#x25cf;</td>

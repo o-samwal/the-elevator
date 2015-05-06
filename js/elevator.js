@@ -5,7 +5,7 @@ angular.module("elevator", []).
       active: function (n) {
         return this.floor == n;
       },
-      icon: function (n) {
+      state: function () {
         var r = this.occupied ? "Occpd " : "Empty ";
         switch (this.dir) {
           case -1: r += "↑↑↑↑"; break;
