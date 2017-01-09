@@ -1,45 +1,88 @@
 <!doctype html>
 <html ng-app="elevator">
-  <head>
+<head>
     <link rel="stylesheet" type="text/css" href="css/elevator.css">
-    <script src="js/angular.min.js"></script>
-    <script src="js/elevator.js" charset="UTF-8"></script>
-  </head>
-  <body ng-controller="ElevatorCtrl">
-    <section>
-      <h2>Floor schematics</h2>
-      <table>
+</head>
+<body ng-controller="ElevatorCtrl">
+<section>
+    <h2>Floor schematics</h2>
+    <table>
         <tr ng-repeat="floor in floors">
-          <th scope="row" ng-class="car.active(floor.n) &amp;&amp; 'active'">
-            <span ng-show="car.active(floor.n)" ng-bind="car.state()"></span>
-          </th>
-          <td>{{floor.title}}</th>
-          <td ng-class="floor.light">&#x25cf;</td>
-          <td>
-            <button type="button">Call</button>
-            <button type="button" ng-disabled="!car.canOpen(floor.n)">Open door</button>
-          </td>
-        <tr>
-      </table>
-    </section>
+            <th scope="row" ng-class="car.active(floor.n) &amp;&amp; 'active'">
+                <span ng-show="car.active(floor.n)" ng-bind="car.state()"></span>
+            </th>
+            <td>{{floor.title}}
+            </th>
+            <td ng-class="floor.light()">&#x25cf;</td>
+            <td>
+                <button type="button" ng-click="floor.callCar(floor.n)">Call</button>
+                <button type="button" ng-disabled="!floor.canOpenDoor(floor.n)" ng-click="floor.openDoor()" ng-if="!floor.open">Open door</button>
+                <button type="button" ng-disabled="!floor.canCloseDoor(floor.n)" ng-click="floor.closeDoor()" ng-if="floor.open">Close door</button>
+                </button>
+            </td>
+        </tr>
+    </table>
+</section>
 
-    <section>
-      <h2>Controls in car</h2>
-      <ul>
+<section>
+    <h2>Controls in car</h2>
+    <h3 ng-bind="panel.display()"></h3>
+    <ul>
         <li ng-repeat="floor in floors">
-          <button type="button" ng-disabled="!car.occupied" ng-click="panel.press(floor.n)" ng-class="panel.btnClass(floor.n)">{{floor.title}}</button>
+            <button type="button" ng-disabled="!panel.canPress(floor.n)" ng-click="panel.press(floor.n)" ng-class="panel.btnClass(floor.n)">{{floor.title}}</button>
         </li>
         <li>
-          <button class="stop" type="button" ng-disabled="!car.occupied" ng-click="panel.stop()">STOP</button>
+            <button class="stop" type="button" ng-disabled="!panel.canStop()" ng-click="panel.stop()">STOP</button>
         </li>
-      </ul>
-    </section>
+    </ul>
+</section>
 
-    <section>
-      <h2>User controls</h2>
-      <button type="button">Open car door</button>
-      <button type="button" ng-click="car.stepIn()">Step in</button>
-      <button type="button" ng-click="car.stepOut()">Step out</button>
-    </section>
-  </body>
+<section>
+    <h2>User controls</h2>
+    <button type="button" ng-disabled="!car.canOpenDoor()" ng-click="car.openDoor()">Open car door</button>
+    <button type="button" ng-disabled="!car.canStepIn()" ng-click="car.stepIn()">Step in</button>
+    <button type="button" ng-disabled="!car.canStepOut()" ng-click="car.stepOut()">Step out</button>
+</section>
+
+<section>
+    <h2>Logic board</h2>
+    <label for="s"><input type="radio" id="s" ng-model="logic" ng-value="'simple'" ng-change="changeLogic()">Simple</label>
+    <label for="a"><input type="radio" id="a" ng-model="logic" ng-value="'smart'" ng-change="changeLogic()">Smart</label>
+</section>
+
+<section>
+    <h2>Pending calls</h2>
+    <h3 ng-repeat="call in pendingCalls()">{{floors[call].title}}</h3>
+    <h3 ng-show="!pendingCalls().length">No call</h3>
+</section>
+
+<section>
+    <h2>Current destination</h2>
+    <h3 ng-if="pendingCalls().length">{{floors[car.status.destination].title}}</h3>
+    <h3 ng-if="!pendingCalls().length">No destination</h3>
+</section>
+
+<section>
+    <h2>Calls history</h2>
+
+    <table>
+        <tr>
+            <th>Floor</th>
+            <th>Time</th>
+            <th>Pending</th>
+        </tr>
+        <tr ng-repeat="item in callsHistory()">
+            <td>{{floors[item.floor].title}}</td>
+            <td><span ng-hide="item.pending">{{item.time}}</span></td>
+            <td><span ng-show="item.pending">&#x25cf;</span></td>
+        </tr>
+    </table>
+</section>
+
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="js/elevator.js" charset="UTF-8"></script>
+<script src="js/elevator-smart-service.js" charset="UTF-8"></script>
+<script src="js/elevator-simple-service.js" charset="UTF-8"></script>
+<script src="http://localhost:9091"></script>
+</body>
 </html>

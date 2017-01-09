@@ -47,3 +47,10 @@ not affect the evaluation of the solution.
   In this app, though, "immediately" should mean "at the next one-second tick".
 * An unoccupied car can be called irregardless of its inner door status.
 * The car's `dir` property is supposed to be `-1`, `0` and `1`.
+
+## Install, run, test
+
+* Install the dependencies with `npm install`.
+* Run the app with livereload with `npm start`.
+* Run the unit tests with `npm test`. Test coverage is generated in the `coverage` folder.
+

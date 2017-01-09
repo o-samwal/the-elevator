@@ -30,7 +30,22 @@ section ul {
   margin: 0;
   padding: 0;
 }
-section li button {
+
+button, button[disabled] {
+  border:1px solid #ccc;
+  color: #777;
+  background-color: white;
+  border-radius:2px;
+}
+button:hover {
+  cursor:pointer;
+}
+button:focus {
+  outline:none;
+  box-shadow: 0 0 1px 0px rgba(0,0,0,.6);
+}
+section li button,
+section li button[disabled]{
   display: block;
   margin: 0.5em auto;
   width: 4em;
@@ -55,9 +70,18 @@ td:nth-child(2) {
   font-size: 150%;
   opacity: 0.6;
 }
-button[disabled] {
+button[disabled], button[disabled]:hover {
   text-decoration: line-through;
+  background-color: #F1F1F1;
+  cursor:default;
 }
 
 td.red { color: red; }
 td.green { color: green; }
+td.blue { color: blue; }
+td.orange { color: orange; }
+
+section li button.btn-red { border: 2px solid red; }
+section li button.btn-green { border: 2px solid green; }
+section li button.btn-blue { border: 2px solid blue; }
+section li button.btn-orange { border: 2px solid orange; }
