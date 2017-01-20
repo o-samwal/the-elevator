@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "karma start --singleRun",
-    "open": "opener http://localhost:9090/app/",
+    "open": "opener http://localhost:9090/app/index.html",
     "serve": "http-server -p 9090 ./",
     "live-reload": "live-reload --port 9091 app/",
     "start": "npm run open -s && parallelshell \"npm run live-reload -s\" \"npm run serve -s\""

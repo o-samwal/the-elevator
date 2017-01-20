@@ -309,44 +309,6 @@ describe('Controller::Elevator', function () {
                     expect($scope.car.canMove()).toBeTruthy();
                 });
             });
-
-
-            // it('The car cannot move if the outer door is not open', function () {
-            //     $scope.floors[5].open = true;
-            //     expect($scope.car.canMove()).toBeFalsy();
-            // });
-            //
-            // it('The car cannot move if it is occupied and the inner door is open ', function () {
-            //     $scope.car.open            = true;
-            //     $scope.car.status.occupied = true;
-            //     expect($scope.car.canMove()).toBeFalsy();
-            // });
-            //
-            // it('The car can move if its door is closed ', function () {
-            //     $scope.car.open            = false;
-            //     $scope.car.status.occupied = true;
-            //     expect($scope.car.canMove()).toBeTruthy();
-            //     $scope.car.status.occupied = false;
-            //     expect($scope.car.canMove()).toBeTruthy();
-            // });
-            //
-            // it('The car can move if it is not occupied', function () {
-            //     $scope.car.open            = false;
-            //     $scope.car.status.occupied = false;
-            //     expect($scope.car.canMove()).toBeTruthy();
-            //     $scope.car.open = true;
-            //     expect($scope.car.canMove()).toBeTruthy();
-            // });
-            //
-            // it('The car cannot move if it is stopped and the corresponding floor door is open ', function () {
-            //     $scope.car.status.floor = 5;
-            //     $scope.car.status.dir   = 0;
-            //     var floor               = $scope.floors[5];
-            //     expect(floor.canOpenDoor()).toBeTruthy();
-            //     floor.openDoor();
-            //     expect(floor.open).toBeTruthy();
-            //     expect($scope.car.canMove()).toBeFalsy();
-            // });
         });
 
         describe('comingAtFloor', function () {
